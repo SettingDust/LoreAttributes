@@ -78,8 +78,7 @@ public class LoreHandler implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void modifyEntityDamage(EntityDamageByEntityEvent event) {
         if ((event.isCancelled())
-                || !(event.getEntity() instanceof LivingEntity)
-                || event.getEntityType().equals(EntityType.ARMOR_STAND)) {
+                || !(event.getEntity() instanceof LivingEntity)) {
             return;
         }
         double damage;
@@ -94,14 +93,14 @@ public class LoreHandler implements Listener {
                 return;
             }
             if ((damager instanceof Player)) {
-                if (AttributesManager.canAttack(damager.getName())) {
-                    AttributesManager.addAttackCooldown(damager.getName());
+                if (AttributesManager.canAttack(((Player)damager).getName())) {
+                    AttributesManager.addAttackCooldown(((Player)damager).getName());
                 } else {
                     if (!LanguageUtils.config.getConfig().getBoolean("lore.attack-speed.display-message")) {
                         event.setCancelled(true);
                         return;
                     }
-                    damager.sendMessage(LanguageUtils.getString("lore.attack-speed.message"));
+                    ((Player)damager).sendMessage(LanguageUtils.getString("lore.attack-speed.message"));
                     event.setCancelled(true);
                     return;
                 }
@@ -134,14 +133,14 @@ public class LoreHandler implements Listener {
                     return;
                 }
                 if ((damager instanceof Player)) {
-                    if (AttributesManager.canAttack(damager.getName())) {
-                        AttributesManager.addAttackCooldown(damager.getName());
+                    if (AttributesManager.canAttack(((Player)damager).getName())) {
+                        AttributesManager.addAttackCooldown(((Player)damager).getName());
                     } else {
                         if (!LanguageUtils.config.getConfig().getBoolean("lore.attack-speed.display-message")) {
                             event.setCancelled(true);
                             return;
                         }
-                        damager.sendMessage(LanguageUtils.getString("lore.attack-speed.message"));
+                        ((Player)damager).sendMessage(LanguageUtils.getString("lore.attack-speed.message"));
                         event.setCancelled(true);
                         return;
                     }
