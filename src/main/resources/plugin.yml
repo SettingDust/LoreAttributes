@@ -1,0 +1,16 @@
+name: LoreAttributes
+main: com.settingdust.loreattr.LoreAttributes
+version: 3.0
+description: Apply stats to weapons and armor!
+authors: [SettingDust]
+softdepend: [LevelPoints]
+commands:
+  loreattr:
+    description: Commands of LoreAttributes.
+permission:
+  loreattr.admin:
+    description: Permission of reload & dura.
+    default: op
+  loreattr.use:
+    description: Permission of stats.
+    default: user

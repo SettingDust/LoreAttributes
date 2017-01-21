@@ -1,0 +1,4 @@
+language: zh_CN
+base_health: 20
+accessory: 35
+rune_limit: 5
