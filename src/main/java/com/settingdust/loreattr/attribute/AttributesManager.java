@@ -284,9 +284,9 @@ public class AttributesManager {
         Integer damageBonus = 0;
         List<String> lore = LoreUtils.getLore(entity, false, false);
         for (String s : lore) {
-            Matcher negValueMatcher = ((DamageAttribute) attributes.get("damage")).getDamageValueRegex().matcher(s.toLowerCase());
+            Matcher negValueMatcher = ((DamageAttribute) attributes.get("damage")).getNegitiveDamageValueRegex().matcher(s.toLowerCase());
             Matcher rangeMatcher = ((DamageAttribute) attributes.get("damage")).getDamageRangeRegex().matcher(s.toLowerCase());
-            Matcher valueMatcher = ((DamageAttribute) attributes.get("damage")).getDamageRangeRegex().matcher(s.toLowerCase());
+            Matcher valueMatcher = ((DamageAttribute) attributes.get("damage")).getDamageValueRegex().matcher(s.toLowerCase());
             if (rangeMatcher.find()) {
                 damageMin = Integer.valueOf(rangeMatcher.group(1));
                 damageMax = Integer.valueOf(rangeMatcher.group(3));

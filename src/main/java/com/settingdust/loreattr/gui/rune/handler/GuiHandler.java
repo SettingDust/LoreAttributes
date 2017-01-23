@@ -35,7 +35,7 @@ public class GuiHandler implements Listener {
                     } else {
                         event.setCancelled(true);
                     }
-                } else {
+                } else if (isValid(event.getCurrentItem())) {
                     event.setCancelled(true);
                 }
             }

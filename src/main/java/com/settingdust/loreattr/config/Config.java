@@ -1,5 +1,6 @@
 package com.settingdust.loreattr.config;
 
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
@@ -65,7 +66,11 @@ public class Config {
                 configFile.createNewFile();
                 if (def) {
                     InputStream inputStream = plugin.getResource(configFile.getName());
-                    this.load(inputStream);
+                    if (System.getProperty("file.encoding").equalsIgnoreCase("GBK")) {
+                        getConfig().loadFromString(transferFile2GBK(inputStream));
+                    } else {
+                        load(inputStream);
+                    }
                 } else {
                     this.load(new FileInputStream(configFile));
                 }
@@ -73,6 +78,8 @@ public class Config {
             } else
                 this.load(new FileInputStream(configFile));
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InvalidConfigurationException e) {
             e.printStackTrace();
         }
     }
@@ -118,5 +125,42 @@ public class Config {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private String transfer2GBK(String s) {
+        String utf8 = new String("");
+        try {
+            byte[] from = s.getBytes("UTF-8");
+            byte[] temp = new String(from, "UTF-8").getBytes("gbk");
+            utf8 = new String(temp, "gbk");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return utf8;
+    }
+
+    private String transferFile2GBK(InputStream inputStream)
+            throws IOException {
+        String utf8 = new String("");
+        try {
+            InputStreamReader reader = new InputStreamReader(inputStream, "UTF-8");
+            StringBuilder builder = new StringBuilder();
+            BufferedReader input = new BufferedReader(reader);
+            String builders = "";
+            try {
+                String line;
+                while ((line = input.readLine()) != null) {
+                    builders = builders + transfer2GBK(line) + '\n';
+                    builder.append(transfer2GBK(line));
+                    builder.append('\n');
+                }
+                utf8 = builders;
+            } finally {
+                input.close();
+            }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return utf8;
     }
 }

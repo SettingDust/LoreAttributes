@@ -3,6 +3,7 @@ package com.settingdust.loreattr.gui;
 import com.settingdust.loreattr.gui.item.Condition;
 import com.settingdust.loreattr.gui.item.Item;
 import com.settingdust.loreattr.gui.item.Location;
+import com.settingdust.loreattr.gui.rune.util.RuneUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -69,7 +70,8 @@ public class BaseGui {
         Inventory inventory = Bukkit.createInventory(player, 6 * 9, title);
         for (int i = 0; i < items.size(); i++) {
             ItemStack itemStack = items.get(i).getItemStack();
-            itemStack.addUnsafeEnchantment(Enchantment.LUCK, 0);
+            if (!RuneUtils.isRune(itemStack))
+                itemStack.addUnsafeEnchantment(Enchantment.LUCK, 0);
             inventory.setItem(i, itemStack);
         }
         player.openInventory(inventory);
