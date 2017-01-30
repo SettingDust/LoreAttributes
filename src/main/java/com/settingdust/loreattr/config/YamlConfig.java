@@ -45,7 +45,8 @@ public class YamlConfig extends YamlConfiguration {
 
         String data = saveToString();
 
-        FileWriter writer = new FileWriter(file);
+        OutputStreamWriter writer =
+                new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
         try {
             writer.write(data);
         } finally {
@@ -130,6 +131,7 @@ public class YamlConfig extends YamlConfiguration {
     @Override
     public void loadFromString(String contents) throws InvalidConfigurationException {
         Map input;
+        System.out.println(contents);
         try {
             input = (Map) this.yaml.load(contents);
         } catch (YAMLException e) {
