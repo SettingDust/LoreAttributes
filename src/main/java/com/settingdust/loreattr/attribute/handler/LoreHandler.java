@@ -93,14 +93,14 @@ public class LoreHandler implements Listener {
                 return;
             }
             if ((damager instanceof Player)) {
-                if (AttributesManager.canAttack(((Player)damager).getName())) {
-                    AttributesManager.addAttackCooldown(((Player)damager).getName());
+                if (AttributesManager.canAttack(((Player) damager).getName())) {
+                    AttributesManager.addAttackCooldown(((Player) damager).getName());
                 } else {
                     if (!LanguageUtils.config.getConfig().getBoolean("lore.attack-speed.display-message")) {
                         event.setCancelled(true);
                         return;
                     }
-                    ((Player)damager).sendMessage(LanguageUtils.getString("lore.attack-speed.message"));
+                    ((Player) damager).sendMessage(LanguageUtils.getString("lore.attack-speed.message"));
                     event.setCancelled(true);
                     return;
                 }
@@ -133,14 +133,14 @@ public class LoreHandler implements Listener {
                     return;
                 }
                 if ((damager instanceof Player)) {
-                    if (AttributesManager.canAttack(((Player)damager).getName())) {
-                        AttributesManager.addAttackCooldown(((Player)damager).getName());
+                    if (AttributesManager.canAttack(((Player) damager).getName())) {
+                        AttributesManager.addAttackCooldown(((Player) damager).getName());
                     } else {
                         if (!LanguageUtils.config.getConfig().getBoolean("lore.attack-speed.display-message")) {
                             event.setCancelled(true);
                             return;
                         }
-                        ((Player)damager).sendMessage(LanguageUtils.getString("lore.attack-speed.message"));
+                        ((Player) damager).sendMessage(LanguageUtils.getString("lore.attack-speed.message"));
                         event.setCancelled(true);
                         return;
                     }

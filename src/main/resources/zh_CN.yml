@@ -1,36 +1,36 @@
 help:
-  - "{command} - {description} 所需权限: {permission}"
-  - "[]包含的参数是必填参数, <>包含的是选填参数"
-  - "&6{author}"
+- '{command} - {description} 所需权限: {permission}'
+- '[]包含的参数是必填参数, <>包含的是选填参数'
+- '&6{author}'
 command:
   loreattr:
     dura:
-      message: "&f&l[&7IAoderCraft&f&l]Durability回复了{amount}点"
-      description: "&l&b耐久相关指令. "
+      message: '&f&l[&7IAoderCraft&f&l]Durability回复了{amount}点'
+      description: '&l&b耐久相关指令. '
       args:
-        int: "耐久值:整数"
+        int: 耐久值:整数
       error:
-        dura: "&c没有耐久值！"
+        dura: '&c没有耐久值！'
     reload:
-      message: "&a重载完成! "
-      description: "&l&b重载本插件所有配置文件. "
+      message: '&a重载完成! '
+      description: '&l&b重载本插件所有配置文件. '
     save:
-      message: "&a保存成功！"
-      description: "&l&b保存所有数据. "
+      message: '&a保存成功！'
+      description: '&l&b保存所有数据. '
     stats:
-      description: "&l&b显示当前属性"
+      description: '&l&b显示当前属性'
     rune:
-      description: "&l&b打开符文界面"
+      description: '&l&b打开符文界面'
       args:
-        page: "页数:整数"
+        page: 页数:整数
       error:
-        limit: "&c符文页超出上限! "
-        min: "&c符文页超出下限! "
-        lock: "&c符文页尚未解锁! "
+        limit: '&c符文页超出上限! '
+        min: '&c符文页超出下限! '
+        lock: '&c符文页尚未解锁! '
   error:
-    console: "&4此命令只可由玩家使用! "
-    args: "&c请检查命令参数是否正确! "
-    permission: "&c你没有使用此命令的权限! "
+    console: '&4此命令只可由玩家使用! '
+    args: '&c请检查命令参数是否正确! '
+    permission: '&c你没有使用此命令的权限! '
 lore:
   health:
     base-health: 20
@@ -40,7 +40,7 @@ lore:
   attack-speed:
     enabled: false
     display-message: false
-    message: "你攻击太频繁了"
+    message: 你攻击太频繁了
     base-delay: 2
     keyword: attack speed
   damage:
@@ -58,10 +58,10 @@ lore:
   restriction:
     keyword: type
     display-message: false
-    message: "你不能使用%itemname%. "
+    message: '你不能使用%itemname%. '
   level:
     keyword: level
-    message: "你的等级不足以使用此物品. "
+    message: '你的等级不足以使用此物品. '
   unbreakable:
     keyword: unbreakable
   dura-regen:
@@ -70,10 +70,10 @@ lore:
     keyword: exp
   bound:
     keyword: bound
-    message: "本物品只能由{name}使用. "
+    message: '本物品只能由{name}使用. '
   dura:
     keyword: dura
-    message: "已达到耐久上限. "
+    message: '已达到耐久上限. '
   true-damage:
     keyword: True Damage
   penetration:
@@ -90,25 +90,25 @@ integration:
   permissionshealth: false
 gui:
   rune:
-    title: "&l符文页面-{{page}}"
+    title: '&l符文页面-{page}'
     border:
       type: STAINED_GLASS_PANE
       id: 2
-      display: ""
+      display: ''
     corner:
       type: STAINED_GLASS_PANE
       id: 5
-      display: ""
+      display: ''
     line:
       type: STAINED_GLASS_PANE
       id: 7
-      display: ""
+      display: ''
     mid:
       type: WATCH
       id: 0
-      display: ""
+      display: ''
     slot:
       type: REDSTONE_BLOCK
       id: 0
-      display: "&a空槽位"
-    rune: "{type}符文"
+      display: '&a空槽位'
+    rune: '{type}符文'

@@ -35,7 +35,8 @@ public class GuiHandler implements Listener {
                     } else {
                         event.setCancelled(true);
                     }
-                } else if (isValid(event.getCurrentItem())) {
+                } else if (!(isValid(event.getCursor()) && RuneUtils.isRune(event.getCursor()))
+                        || isValid(event.getCurrentItem())) {
                     event.setCancelled(true);
                 }
             }
@@ -50,6 +51,6 @@ public class GuiHandler implements Listener {
     }
 
     private boolean isValid(ItemStack itemStack) {
-        return itemStack != null || !itemStack.getType().equals(Material.AIR);
+        return itemStack != null && !itemStack.getType().equals(Material.AIR);
     }
 }

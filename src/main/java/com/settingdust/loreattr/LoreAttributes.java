@@ -20,7 +20,7 @@ public class LoreAttributes extends JavaPlugin {
     public static LoreAttributes plugin;
 
     @Override
-    public void onLoad() {
+    public void onEnable() {
         this.plugin = this;
 
         getConfig().options().copyDefaults(true);
@@ -32,10 +32,7 @@ public class LoreAttributes extends JavaPlugin {
 
         ConfigurationSerialization.registerClass(Attribute.class);
         ConfigurationSerialization.registerClass(Item.class);
-    }
 
-    @Override
-    public void onEnable() {
         this.getCommand(Names.LOREATTR.getName()).setExecutor(new CommandHandler());
         this.getServer().getPluginManager().registerEvents(new LoreHandler(this), this);
         this.getServer().getPluginManager().registerEvents(new GuiHandler(), this);
