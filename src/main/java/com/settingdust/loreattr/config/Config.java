@@ -66,11 +66,7 @@ public class Config {
                 configFile.createNewFile();
                 if (def) {
                     InputStream inputStream = plugin.getResource(configFile.getName());
-                    if (System.getProperty("file.encoding").equalsIgnoreCase("GBK")) {
-                        getConfig().loadFromString(transferFile2GBK(inputStream));
-                    } else {
-                        load(inputStream);
-                    }
+                    load(inputStream);
                 } else {
                     this.load(new FileInputStream(configFile));
                 }
@@ -78,8 +74,6 @@ public class Config {
             } else
                 this.load(new FileInputStream(configFile));
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InvalidConfigurationException e) {
             e.printStackTrace();
         }
     }

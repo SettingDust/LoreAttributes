@@ -45,17 +45,5 @@
             <version>1.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>com.comphenix.protocol</groupId>
-            <artifactId>ProtocolLib</artifactId>
-            <version>3.6.5</version>
-        </dependency>
-        <dependency>
-            <groupId>com.settingdust.levelpoints</groupId>
-            <artifactId>LevelPoints</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/modules/LevelPoints.jar</systemPath>
-        </dependency>
     </dependencies>
 </project>

@@ -1,21 +1,12 @@
 package com.settingdust.loreattr.attribute.util;
 
-import com.settingdust.levelpoints.LevelPoints;
-import com.settingdust.loreattr.LoreAttributes;
-import com.settingdust.loreattr.attribute.AttributesManager;
-import com.settingdust.loreattr.attribute.attributes.AccessoryAttribute;
-import com.settingdust.loreattr.gui.rune.util.RuneUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
 
 
 /**
@@ -23,25 +14,11 @@ import java.util.regex.Matcher;
  */
 public class LoreUtils {
 
-    public static Integer getKeyValue(String name, String key) {
-        double value = 0;
-        if (Bukkit.getPluginManager().isPluginEnabled("LevelPotions")) {
-            for (String type : LevelPoints.pointsUtils.getAttributes().keySet()) {
-                for (String s : LevelPoints.pointsUtils.getAttributes().get(type).attributes.keySet()) {
-                    if (s.equalsIgnoreCase(key)) {
-                        value = value + LevelPoints.pointsUtils.getAttribute(name, type, key);
-                    }
-                }
-            }
-        }
-        return (int) value;
-    }
-
     public static boolean random(int chance) {
         return (int) (Math.random() * 100) < chance;
     }
 
-    public static List<String> getLore(LivingEntity entity, boolean armor, boolean accessory) {
+    public static List<String> getLore(LivingEntity entity, boolean armor) {
         List lore = new ArrayList();
         if (armor) {
             for (ItemStack item : entity.getEquipment().getArmorContents()) {
@@ -60,26 +37,6 @@ public class LoreUtils {
                 (item.hasItemMeta()) &&
                 (item.getItemMeta().hasLore())) {
             for (String s : item.getItemMeta().getLore()) {
-                lore.add(ChatColor.stripColor(s));
-            }
-        }
-        if (entity instanceof HumanEntity && accessory) {
-            HumanEntity humanEntity = (HumanEntity) entity;
-            item = humanEntity.getInventory().getItem(LoreAttributes.plugin.getConfig().getInt("accessory", 35));
-            if ((item != null) &&
-                    (item.hasItemMeta()) &&
-                    (item.getItemMeta().hasLore())) {
-                List<String> itemLore = item.getItemMeta().getLore();
-                Matcher matcher =
-                        ((AccessoryAttribute) AttributesManager.getAttribute("accessory")).getAccessoryRegex().matcher(itemLore.toString());
-                if (matcher.find())
-                    for (String s : itemLore) {
-                        lore.add(ChatColor.stripColor(s));
-                    }
-            }
-        }
-        if (entity instanceof HumanEntity) {
-            for (String s : RuneUtils.getState((Player) entity)) {
                 lore.add(ChatColor.stripColor(s));
             }
         }

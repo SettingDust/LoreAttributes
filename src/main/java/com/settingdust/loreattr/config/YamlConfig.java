@@ -44,12 +44,13 @@ public class YamlConfig extends YamlConfiguration {
         this.createParentDirs(file);
 
         String data = saveToString();
-
-        FileWriter writer = new FileWriter(file);
+        OutputStream stream = new FileOutputStream(file);
+        OutputStreamWriter streamWriter = new OutputStreamWriter(stream, "UTF-8");
         try {
-            writer.write(data);
+            streamWriter.write(data);
         } finally {
-            writer.close();
+            streamWriter.close();
+            stream.close();
         }
     }
 
