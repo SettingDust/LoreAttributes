@@ -88,7 +88,6 @@ public class AttributesManager {
                 return false;
             }
         }
-
         return true;
     }
 

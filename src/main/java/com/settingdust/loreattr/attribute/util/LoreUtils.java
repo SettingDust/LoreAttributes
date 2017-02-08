@@ -46,12 +46,9 @@ public class LoreUtils {
 
     public static boolean itemIsSimilar(ItemStack item1, ItemStack item2) {
         boolean similar = false;
-        if (item1 != null
-                && !item1.getType().equals(Material.AIR)
-                && item2 != null
-                && !item2.getType().equals(Material.AIR)) {
-            similar = item1.getDurability() == item2.getDurability()
-                    && item1.getType().equals(item2.getType());
+        if (item1 != null && item2 != null) {
+            similar = item1.getType().equals(item2.getType())
+                    && item1.getDurability() == item2.getDurability();
             if (item1.hasItemMeta() && item2.hasItemMeta())
                 similar = similar && item1.getItemMeta().equals(item2.getItemMeta());
 
