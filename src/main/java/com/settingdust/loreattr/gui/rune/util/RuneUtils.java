@@ -112,9 +112,7 @@ public class RuneUtils {
         boolean is = false;
         if (itemStack.hasItemMeta() && itemStack.getItemMeta().hasDisplayName()) {
             ItemMeta itemMeta = itemStack.getItemMeta();
-            Pattern regex = Pattern.compile(LanguageUtils.getString("gui.rune.rune").replace("{type}","(\\w*)"));
-            Matcher matcher = regex.matcher(ChatColor.stripColor(itemMeta.getDisplayName()));
-            is = matcher.find();
+            is = itemMeta.getDisplayName().matches(LanguageUtils.getString("gui.rune.rune").replace("{type}","\\w*"));
         }
         return is;
     }
