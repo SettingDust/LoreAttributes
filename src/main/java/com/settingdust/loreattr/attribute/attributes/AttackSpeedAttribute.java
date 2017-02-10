@@ -14,7 +14,7 @@ public class AttackSpeedAttribute extends Attribute {
 
     public AttackSpeedAttribute() {
         super("attack-speed");
-        this.attackSpeedRegex = Pattern.compile("[+](\\d+)[ ](" + LanguageUtils.getString("lore." + getName() + "keyword").toLowerCase() + ")");
+        this.attackSpeedRegex = Pattern.compile("[+](\\d+)[ ](" + LanguageUtils.getString("lore." + getName() + ".keyword").toLowerCase() + ")");
 
     }
 
