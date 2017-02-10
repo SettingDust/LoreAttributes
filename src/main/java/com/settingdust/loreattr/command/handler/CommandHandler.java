@@ -21,7 +21,6 @@ public class CommandHandler implements CommandExecutor {
     private static List<BaseCommand> commands = new ArrayList<>();
 
     public CommandHandler() {
-        commands.add(new RuneCommand(new String[]{"rune"}, new String[]{"[page]"}, "loreattr.use", true));
         commands.add(new StatsCommand(new String[]{"stats"}, new String[0], "loreattr.use", true));
         commands.add(new DuraCommand(new String[]{"dura"}, new String[]{"<int>"}, "loreattr.use", true));
         commands.add(new ReloadCommand(new String[]{"reload"}, new String[0], "loreattr.admin", false));
