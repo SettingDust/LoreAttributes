@@ -36,24 +36,24 @@ public class AttributesManager {
         attributes.put("regen", new RegenAttribute());
         attributes.put("attack-speed", new AttackSpeedAttribute());
         attributes.put("damage", new DamageAttribute());
-        attributes.put("dodge",new DodgeAttribute());
-        attributes.put("critical-chance",new CritChanceAttribute());
-        attributes.put("critical-damage",new CritDamageAttribute());
-        attributes.put("life-steal",new LifeStealAttribute());
-        attributes.put("armor",new ArmorAttribute());
-        attributes.put("restriction",new RestrictionAttribute());
-        attributes.put("level",new LevelAttribute());
-        attributes.put("unbreakable",new UnbreakableAttribute());
-        attributes.put("dura-regen",new DuraRegenAttribute());
-        attributes.put("exp",new ExpAttribute());
-        attributes.put("bound",new BoundAttribute());
-        attributes.put("dura",new DuraAttribute());
-        attributes.put("true-damage",new TrueDamageAttribute());
-        attributes.put("penetration",new PenetrationAttribute());
-        attributes.put("rating",new RatingAttribute());
-        attributes.put("critical-defense",new CritDefenseAttribute());
-        attributes.put("lighting",new LightingAttribute());
-        attributes.put("accessory",new AccessoryAttribute());
+        attributes.put("dodge", new DodgeAttribute());
+        attributes.put("critical-chance", new CritChanceAttribute());
+        attributes.put("critical-damage", new CritDamageAttribute());
+        attributes.put("life-steal", new LifeStealAttribute());
+        attributes.put("armor", new ArmorAttribute());
+        attributes.put("restriction", new RestrictionAttribute());
+        attributes.put("level", new LevelAttribute());
+        attributes.put("unbreakable", new UnbreakableAttribute());
+        attributes.put("dura-regen", new DuraRegenAttribute());
+        attributes.put("exp", new ExpAttribute());
+        attributes.put("bound", new BoundAttribute());
+        attributes.put("dura", new DuraAttribute());
+        attributes.put("true-damage", new TrueDamageAttribute());
+        attributes.put("penetration", new PenetrationAttribute());
+        attributes.put("rating", new RatingAttribute());
+        attributes.put("critical-defense", new CritDefenseAttribute());
+        attributes.put("lighting", new LightingAttribute());
+        attributes.put("accessory", new AccessoryAttribute());
 
         attackSpeedEnabled = false;
 
@@ -141,7 +141,7 @@ public class AttributesManager {
             }
 
             if (entity instanceof Player)
-                regenBonus += LoreUtils.getKeyValue(((Player)entity).getName(), "healthRegen");
+                regenBonus += LoreUtils.getKeyValue(((Player) entity).getName(), "healthRegen");
 
             event.setAmount(event.getAmount() + regenBonus);
 
@@ -237,8 +237,30 @@ public class AttributesManager {
                 hpToAdd -= Integer.valueOf(matcher.group(1));
         }
         if (entity instanceof Player)
-            hpToAdd += LoreUtils.getKeyValue(((Player)entity).getName(), "health");
+            hpToAdd += LoreUtils.getKeyValue(((Player) entity).getName(), "health");
         return hpToAdd;
+    }
+
+    /**
+     * @param item
+     * @return health
+     */
+    public static int getHealth(ItemStack item) {
+        int health = 0;
+        if (item != null
+                && item.hasItemMeta()
+                && !item.getType().equals(Material.AIR)
+                && item.getItemMeta().hasLore()) {
+            List lore = item.getItemMeta().getLore();
+            String allLore = lore.toString().toLowerCase();
+            Matcher matcher = ((HealthAttribute) attributes.get("health")).getRegex().matcher(allLore);
+            Matcher nematcher = ((HealthAttribute) attributes.get("health")).getNegRegex().matcher(allLore);
+            if (matcher.find())
+                health = health + Integer.valueOf(matcher.group(1));
+            if (nematcher.find())
+                health = health - Integer.valueOf(matcher.group(1));
+        }
+        return health;
     }
 
     /**
@@ -258,7 +280,7 @@ public class AttributesManager {
             }
         }
         if (entity instanceof Player)
-            regenBonus += LoreUtils.getKeyValue(((Player)entity).getName(), "healthRegen");
+            regenBonus += LoreUtils.getKeyValue(((Player) entity).getName(), "healthRegen");
         return regenBonus;
     }
 
@@ -299,7 +321,7 @@ public class AttributesManager {
             }
         }
         if (entity instanceof Player)
-            damageBonus += LoreUtils.getKeyValue(((Player)entity).getName(), "damage");
+            damageBonus += LoreUtils.getKeyValue(((Player) entity).getName(), "damage");
 
         if (damageMax < 1) {
             damageMax = 1;
@@ -342,7 +364,7 @@ public class AttributesManager {
             }
         }
         if (entity instanceof Player) {
-            dodgeBonus += LoreUtils.getKeyValue(((Player)entity).getName(), "dodgeChance");
+            dodgeBonus += LoreUtils.getKeyValue(((Player) entity).getName(), "dodgeChance");
         }
         return dodgeBonus;
     }
@@ -364,7 +386,7 @@ public class AttributesManager {
             }
         }
         if (entity instanceof Player) {
-            damage += LoreUtils.getKeyValue(((Player)entity).getName(), "critDamage");
+            damage += LoreUtils.getKeyValue(((Player) entity).getName(), "critDamage");
         }
 
         double defense = getCritDefense(entity);
@@ -389,7 +411,7 @@ public class AttributesManager {
             }
         }
         if (entity instanceof Player) {
-            chance += LoreUtils.getKeyValue(((Player)entity).getName(), "critChance");
+            chance += LoreUtils.getKeyValue(((Player) entity).getName(), "critChance");
         }
         return chance;
     }
