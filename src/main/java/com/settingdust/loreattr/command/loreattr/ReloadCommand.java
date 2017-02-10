@@ -2,7 +2,6 @@ package com.settingdust.loreattr.command.loreattr;
 
 import com.settingdust.loreattr.LoreAttributes;
 import com.settingdust.loreattr.command.LoreAttrCommand;
-import com.settingdust.loreattr.gui.rune.util.RuneUtils;
 import com.settingdust.loreattr.util.LanguageUtils;
 import org.bukkit.command.CommandSender;
 
@@ -18,7 +17,6 @@ public class ReloadCommand extends LoreAttrCommand {
     public boolean excute(CommandSender sender, String[] args) {
         LoreAttributes.plugin.reloadConfig();
         LanguageUtils.config.reloadConfig();
-        RuneUtils.config.reloadConfig();
         sender.sendMessage(LanguageUtils.getString(getPath() + ".message"));
         return true;
     }

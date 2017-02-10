@@ -4,13 +4,11 @@ import com.settingdust.levelpoints.LevelPoints;
 import com.settingdust.loreattr.LoreAttributes;
 import com.settingdust.loreattr.attribute.AttributesManager;
 import com.settingdust.loreattr.attribute.attributes.AccessoryAttribute;
-import com.settingdust.loreattr.gui.rune.util.RuneUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -76,11 +74,6 @@ public class LoreUtils {
                     for (String s : itemLore) {
                         lore.add(ChatColor.stripColor(s));
                     }
-            }
-        }
-        if (entity instanceof HumanEntity) {
-            for (String s : RuneUtils.getState((Player) entity)) {
-                lore.add(ChatColor.stripColor(s));
             }
         }
 
