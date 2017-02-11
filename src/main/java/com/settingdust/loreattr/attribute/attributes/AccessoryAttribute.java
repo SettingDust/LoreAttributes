@@ -13,7 +13,7 @@ public class AccessoryAttribute extends Attribute {
 
     public AccessoryAttribute() {
         super("accessory");
-        this.accessoryRegex = Pattern.compile(LanguageUtils.getString("lore" + getName() + "keyword").toLowerCase());
+        this.accessoryRegex = Pattern.compile(LanguageUtils.getString("lore." + getName() + ".keyword").toLowerCase());
     }
 
     public Pattern getAccessoryRegex() {
