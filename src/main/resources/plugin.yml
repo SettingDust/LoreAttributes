@@ -13,4 +13,4 @@ permission:
     default: op
   loreattr.use:
     description: Permission of stats.
-    default: user
+    default: true

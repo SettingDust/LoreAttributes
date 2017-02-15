@@ -25,7 +25,7 @@ public class RuneCommand extends LoreAttrCommand {
                 sender.sendMessage(LanguageUtils.getString("command.loreattr.rune.error.min"));
             } else if (page > 1) {
                 if (!sender.hasPermission("loreattr.rune." + args[0]))
-                    sender.sendMessage(LanguageUtils.getString("command.loreattr.rune.error.min"));
+                    sender.sendMessage(LanguageUtils.getString("command.error.permission"));
                 else
                     RuneUtils.displayGui((Player) sender, page);
             } else {
